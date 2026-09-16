@@ -33,6 +33,11 @@ export default function RootLayout({
       <body className="bg-bg text-ink font-body antialiased overflow-x-clip">
         <Script src="/scroll-reset.js" strategy="beforeInteractive" />
         <BookingModalProvider>{children}</BookingModalProvider>
+        <Script
+          src="https://unpkg.com/@elevenlabs/convai-widget-embed"
+          strategy="afterInteractive"
+        />
+        <elevenlabs-convai agent-id="agent_1201m2bejtmefpttgn8044d82zmx" />
       </body>
     </html>
   );
