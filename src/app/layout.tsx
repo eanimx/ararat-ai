@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins, Manrope } from "next/font/google";
 import Script from "next/script";
 import BookingModalProvider from "@/components/BookingModalProvider";
+import CallbackModalProvider from "@/components/CallbackModalProvider";
 import { siteConfig } from "@/lib/config";
 import "./globals.css";
 
@@ -32,7 +33,9 @@ export default function RootLayout({
     <html lang="en" className={`${poppins.variable} ${manrope.variable}`}>
       <body className="bg-bg text-ink font-body antialiased overflow-x-clip">
         <Script src="/scroll-reset.js" strategy="beforeInteractive" />
-        <BookingModalProvider>{children}</BookingModalProvider>
+        <BookingModalProvider>
+          <CallbackModalProvider>{children}</CallbackModalProvider>
+        </BookingModalProvider>
         <Script
           src="https://unpkg.com/@elevenlabs/convai-widget-embed"
           strategy="afterInteractive"

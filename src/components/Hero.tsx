@@ -8,6 +8,7 @@ import {
   StorefrontIcon,
 } from "./HeroIcons";
 import Reveal from "./Reveal";
+import RequestCallbackButton from "./RequestCallbackButton";
 import TranscriptPanel from "./TranscriptPanel";
 
 export default function Hero() {
@@ -48,17 +49,17 @@ export default function Hero() {
             working. Your number stays the same.
           </p>
         </Reveal>
-        <div className="flex justify-center mb-3">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+          <RequestCallbackButton className="w-full sm:w-[150px] text-center bg-accent text-accent-ink text-[14.5px] font-bold py-2.5 border border-accent rounded-full hover:bg-dark-bg hover:border-dark-bg hover:text-bg transition-colors">
+            Request a callback
+          </RequestCallbackButton>
           <Link
             href="/how-it-works"
-            className="bg-accent text-accent-ink text-[14.5px] font-bold px-7 py-3 rounded-full hover:bg-dark-bg hover:text-bg transition-colors"
+            className="w-full sm:w-[150px] text-center bg-transparent text-ink border border-[#22223b] text-[14.5px] font-bold py-2.5 rounded-full transition-colors duration-200 hover:bg-[#ced4da] hover:border-[#ced4da]"
           >
             See how it works
           </Link>
         </div>
-        <p className="text-[14px] text-muted m-0">
-          Twenty minutes. No obligation. Setup in under a week.
-        </p>
       </div>
 
       <TranscriptPanel />

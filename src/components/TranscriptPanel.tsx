@@ -27,11 +27,11 @@ const TYPING_MS = 350;
 
 function TypingDots() {
   return (
-    <div className="inline-flex items-center gap-1 bg-bg rounded-[10px_10px_3px_10px] px-4 py-3.5">
+    <div className="inline-flex items-center gap-1 bg-accent rounded-[10px_10px_3px_10px] px-3.5 py-3">
       {[0, 1, 2].map((i) => (
         <span
           key={i}
-          className="w-[6px] h-[6px] rounded-full bg-ink/40 animate-[typingDot_1.1s_ease-in-out_infinite]"
+          className="w-[6px] h-[6px] rounded-full bg-accent-ink/60 animate-[typingDot_1.1s_ease-in-out_infinite]"
           style={{ animationDelay: `${i * 0.15}s` }}
         />
       ))}
@@ -91,20 +91,20 @@ export default function TranscriptPanel() {
   return (
     <div
       ref={ref}
-      className="mt-16 sm:mt-28 mx-auto max-w-none border border-accent rounded-2xl p-1.5 sm:p-2 bg-accent/7"
+      className="mt-12 sm:mt-24 mx-auto max-w-[1100px] border-[8px] sm:border-[10px] border-[#9eb7e5] rounded-[28px] bg-[#E9ECFA]"
     >
-      <div className="transition-all duration-200 ease-out bg-dark-bg rounded-xl px-5 py-7 sm:px-8.5 sm:pt-7.5 sm:pb-8.5 shadow-[0_18px_40px_-28px_rgba(16,20,24,0.5)] hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(16,20,24,0.55)]">
-        <div className="flex items-center justify-between border-b border-dark-border pb-4 mb-5.5 gap-3">
-          <div className="flex items-center gap-2.5 text-bg font-display text-[13px] sm:text-[14.5px] font-semibold">
+      <div className="transition-all duration-200 ease-out bg-bg rounded-[28px] px-4.5 py-6.5 sm:px-8 sm:pt-7 sm:pb-8 shadow-[0_18px_40px_-28px_rgba(16,20,24,0.16)] hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(16,20,24,0.2)]">
+        <div className="flex items-center justify-between border-b border-border-alt pb-3.5 mb-5 gap-3">
+          <div className="flex items-center gap-2.5 text-ink font-display text-[12.5px] sm:text-[13.5px] font-semibold">
             <span className="w-[7px] h-[7px] rounded-full bg-accent block shrink-0" />
             Incoming call · 8:42 PM
           </div>
-          <div className="font-mono-ui text-[10.5px] sm:text-[11.5px] text-muted-dark tracking-[0.04em] whitespace-nowrap">
+          <div className="font-mono-ui text-[10px] sm:text-[11px] text-muted tracking-[0.04em] whitespace-nowrap">
             LIVE TRANSCRIPT
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 min-h-[220px] sm:min-h-[190px]">
+        <div className="flex flex-col gap-3.5 min-h-[205px] sm:min-h-[176px]">
           {TRANSCRIPT.map((line, i) => {
             if (i >= revealed) return null;
             const isSettled = settled.has(i);
@@ -127,17 +127,17 @@ export default function TranscriptPanel() {
                 }
               >
                 <div
-                  className={`font-mono-ui text-[10.5px] tracking-[0.1em] mb-1.5 ${
-                    line.from === "agent" ? "text-bg text-right" : "text-muted-dark"
+                  className={`font-mono-ui text-[10px] tracking-[0.1em] mb-1.5 ${
+                    line.from === "agent" ? "text-accent text-right" : "text-muted"
                   }`}
                 >
                   {line.from === "agent" ? AGENT_LABEL : "CALLER"}
                 </div>
                 <div
-                  className={`text-[15px] leading-[1.5] px-4 py-3.5 ${
+                  className={`text-[14px] leading-[1.5] px-3.5 py-3 ${
                     line.from === "agent"
-                      ? "bg-bg text-ink rounded-[10px_10px_3px_10px]"
-                      : "bg-dark-panel text-[#E9EAE6] rounded-[10px_10px_10px_3px]"
+                      ? "bg-accent text-accent-ink rounded-[10px_10px_3px_10px]"
+                      : "bg-bg-alt text-ink border border-border-alt rounded-[10px_10px_10px_3px]"
                   }`}
                 >
                   {line.text}
@@ -147,7 +147,7 @@ export default function TranscriptPanel() {
           })}
           {typingAt !== null && (
             <div className="max-w-[86%] sm:max-w-[82%] self-end">
-              <div className="font-mono-ui text-[10.5px] tracking-[0.1em] mb-1.5 text-bg text-right">
+              <div className="font-mono-ui text-[10px] tracking-[0.1em] mb-1.5 text-accent text-right">
                 {AGENT_LABEL}
               </div>
               <TypingDots />
@@ -156,7 +156,7 @@ export default function TranscriptPanel() {
         </div>
 
         <div
-          className="mt-6 border-t border-dark-border pt-4.5 flex items-center justify-between gap-4 flex-wrap"
+          className="mt-5.5 border-t border-border-alt pt-4 flex items-center justify-between gap-4 flex-wrap"
           style={
             reduced
               ? undefined
@@ -169,11 +169,11 @@ export default function TranscriptPanel() {
                 }
           }
         >
-          <div className="flex items-center gap-2.5 text-bg text-[13.5px] font-semibold">
+          <div className="flex items-center gap-2.5 text-ink text-[13px] font-semibold">
             <span className="w-4 h-4 rounded-[4px] bg-accent block shrink-0" />
             Appointment added to calendar
           </div>
-          <div className="text-[12.5px] text-muted-dark">Summary emailed to owner</div>
+          <div className="text-[12px] text-muted">Summary emailed to owner</div>
         </div>
       </div>
     </div>
