@@ -22,7 +22,7 @@ export default function Hero() {
               <StorefrontIcon className="w-full h-full text-[#B9791F]" />
             </HeroBadge>{" "}
             business and its AI{" "}
-            <HeroBadge bg="bg-accent/15" innerSize="72%">
+            <HeroBadge bg="bg-accent/15" innerSize="86%">
               <BotIcon className="w-full h-full text-[#00509d]" strokeWidth={1.1} />
             </HeroBadge>{" "}
             team,
@@ -49,20 +49,24 @@ export default function Hero() {
             working. Your number stays the same.
           </p>
         </Reveal>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-          <RequestCallbackButton className="w-full sm:w-[150px] text-center bg-accent text-accent-ink text-[14.5px] font-bold py-2.5 border border-accent rounded-full hover:bg-dark-bg hover:border-dark-bg hover:text-bg transition-colors">
-            Request a callback
-          </RequestCallbackButton>
-          <Link
-            href="/how-it-works"
-            className="w-full sm:w-[150px] text-center bg-transparent text-ink border border-[#22223b] text-[14.5px] font-bold py-2.5 rounded-full transition-colors duration-200 hover:bg-[#ced4da] hover:border-[#ced4da]"
-          >
-            See how it works
-          </Link>
-        </div>
+        <Reveal delay={150}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+            <RequestCallbackButton className="w-full sm:w-[150px] text-center bg-accent text-accent-ink text-[14.5px] font-bold py-2.5 border border-accent rounded-full hover:bg-dark-bg hover:border-dark-bg hover:text-bg transition-colors">
+              Request a callback
+            </RequestCallbackButton>
+            <Link
+              href="/how-it-works"
+              className="w-full sm:w-[150px] text-center bg-transparent text-ink border border-[#22223b] text-[14.5px] font-bold py-2.5 rounded-full transition-colors duration-200 hover:bg-[#ced4da] hover:border-[#ced4da]"
+            >
+              See how it works
+            </Link>
+          </div>
+        </Reveal>
       </div>
 
-      <TranscriptPanel />
+      <Reveal delay={200}>
+        <TranscriptPanel />
+      </Reveal>
       <p className="text-center text-[13.5px] text-muted mt-4">
         A real call handled after hours — question answered, appointment booked, no
         callback needed.

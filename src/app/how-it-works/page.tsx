@@ -112,7 +112,7 @@ export default function HowItWorksPage() {
               <div
                 key={a.title}
                 style={{ backgroundColor: a.bg }}
-                className="rounded-xl p-9 sm:p-10 shadow-[0_16px_32px_-20px_rgba(16,20,24,0.25)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_22px_40px_-18px_rgba(16,20,24,0.3)]"
+                className="h-full rounded-xl p-9 sm:p-10 shadow-[0_16px_32px_-20px_rgba(16,20,24,0.25)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_22px_40px_-18px_rgba(16,20,24,0.3)]"
               >
                 <div className="font-display text-[20px] sm:text-[21px] font-semibold leading-[1.35] mb-3.5 tracking-[-0.015em] text-ink">
                   {a.title}

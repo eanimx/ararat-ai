@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import BookSetupCallButton from "./BookSetupCallButton";
 import { siteConfig } from "@/lib/config";
@@ -19,7 +18,6 @@ const CTA_CLASSNAME =
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -27,13 +25,6 @@ export default function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (pathname === "/") {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
 
   return (
     <header
@@ -44,7 +35,12 @@ export default function Header() {
       <div className="max-w-[1180px] mx-auto px-5 sm:px-6 h-[72px] flex items-center justify-between gap-8">
         <Link
           href="/"
-          onClick={handleLogoClick}
+          onClick={(e) => {
+            // Force a real full-page load instead of Next's client-side
+            // soft navigation, even when already on "/".
+            e.preventDefault();
+            window.location.assign("/");
+          }}
           className="flex items-center shrink-0 cursor-pointer opacity-100 hover:opacity-75 transition-opacity"
           aria-label={siteConfig.businessName}
         >

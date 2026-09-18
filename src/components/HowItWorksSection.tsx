@@ -1,4 +1,4 @@
-import Reveal, { RevealStagger } from "./Reveal";
+import Reveal, { DirectionalStagger } from "./Reveal";
 import { siteConfig } from "@/lib/config";
 
 const STEPS = [
@@ -108,12 +108,15 @@ export default function HowItWorksSection() {
             Three steps, one week.
           </h2>
         </Reveal>
-        <RevealStagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" step={80}>
+        <DirectionalStagger
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+          directions={["left", "bottom", "right"]}
+        >
           {STEPS.map((s) => (
             <div
               key={s.n}
               style={{ backgroundColor: s.bg }}
-              className="rounded-2xl p-7 sm:p-8 shadow-[0_24px_44px_-24px_rgba(0,0,0,0.55)]"
+              className="h-full rounded-2xl p-7 sm:p-8 shadow-[0_24px_44px_-24px_rgba(0,0,0,0.55)]"
             >
               <div className="font-display text-[40px] sm:text-[48px] font-bold tracking-[-0.04em] text-ink/20 leading-none mb-4">
                 {s.n}
@@ -126,7 +129,7 @@ export default function HowItWorksSection() {
               </p>
             </div>
           ))}
-        </RevealStagger>
+        </DirectionalStagger>
 
         <Reveal className="mt-16 sm:mt-20 grid grid-cols-1 lg:grid-cols-[0.36fr_0.64fr] gap-10 sm:gap-14 items-center">
           <div>

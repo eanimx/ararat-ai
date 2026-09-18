@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CallbackForm from "./CallbackForm";
 
 export default function CallbackModal({
@@ -10,6 +10,8 @@ export default function CallbackModal({
   open: boolean;
   onClose: () => void;
 }) {
+  const [entered, setEntered] = useState(false);
+
   useEffect(() => {
     if (!open) return;
 
@@ -27,6 +29,17 @@ export default function CallbackModal({
     };
   }, [open, onClose]);
 
+  // Two-phase mount so the transform/opacity change is a transition, not an
+  // instant jump: render hidden, then flip to visible on the next frame.
+  useEffect(() => {
+    if (!open) return;
+    const id = requestAnimationFrame(() => setEntered(true));
+    return () => {
+      cancelAnimationFrame(id);
+      setEntered(false);
+    };
+  }, [open]);
+
   if (!open) return null;
 
   return (
@@ -39,6 +52,13 @@ export default function CallbackModal({
     >
       <div
         className="relative bg-dark-card border border-dark-border text-bg w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-[400px] sm:rounded-2xl overflow-y-auto shadow-[0_30px_80px_-20px_rgba(16,20,24,0.45)] p-5 sm:p-6"
+        style={{
+          transitionProperty: "opacity, transform",
+          transitionDuration: "250ms",
+          transitionTimingFunction: "ease-out",
+          opacity: entered ? 1 : 0,
+          transform: entered ? "scale(1) translateY(0)" : "scale(0.96) translateY(10px)",
+        }}
         onClick={(e) => e.stopPropagation()}
       >
         <button

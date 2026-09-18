@@ -90,6 +90,54 @@ export function FlipStagger({
   );
 }
 
+export function DirectionalStagger({
+  children,
+  className = "",
+  itemClassName = "",
+  directions,
+  distance = 40,
+  duration = 650,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  itemClassName?: string;
+  directions: ("left" | "right" | "bottom")[];
+  distance?: number;
+  duration?: number;
+}) {
+  const { ref, inView } = useInView<HTMLDivElement>();
+  const reduced = usePrefersReducedMotion();
+  const items = Children.toArray(children);
+
+  return (
+    <div ref={ref} className={className}>
+      {items.map((child, i) => {
+        const dir = directions[i] ?? "bottom";
+        const from =
+          dir === "left"
+            ? `translateX(-${distance}px)`
+            : dir === "right"
+              ? `translateX(${distance}px)`
+              : `translateY(${distance}px)`;
+        const style: CSSProperties | undefined = reduced
+          ? undefined
+          : {
+              transitionProperty: "opacity, transform",
+              transitionDuration: `${duration}ms`,
+              transitionTimingFunction: "ease-out",
+              opacity: inView ? 1 : 0,
+              transform: inView ? "translate(0, 0)" : from,
+            };
+        return (
+          <div key={i} className={itemClassName} style={style}>
+            {child}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export function RevealStagger({
   children,
   className = "",
